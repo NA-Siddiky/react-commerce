@@ -9,12 +9,20 @@ const Shop = () => {
 
     const [product, setProduct] = useState(first10)
 
+    const handleAddProduct = (product)=> {
+        console.log('added', product.name);
+    }
+
     return (
         <div className="shop-container">
             <div className="product-container">
 
                 {
-                    product.map(PD => <Product product={PD}></Product>)
+                    product.map(PD => 
+                    <Product 
+                        handleAddProduct= {handleAddProduct}
+                        product={PD}>
+                    </Product>)
                 }
 
             </div>
