@@ -1,24 +1,23 @@
-.header{
-    text-align: center;
+.header {
+  text-align: center;
 }
 .header img {
-    height: 80px;
-
+  height: 80px;
 }
 .header nav {
-    background-color: black;
-    line-height: 40px;
-    font-size: 20px;
+  background-color: black;
+  line-height: 40px;
+  font-size: 20px;
 }
 nav a {
-    text-decoration: none;
-    color: white;
-    margin-right: 20px;
-    padding: 5px;
+  text-decoration: none;
+  color: white;
+  margin-left: 30px;
+  padding: 5px;
 }
-nav a:hover{
-    background-color: gray;
+nav a:hover {
+  background-color: gray;
 }
-#nav-bar{
-    text-align: left;
+#nav-bar {
+  text-align: left;
 }
