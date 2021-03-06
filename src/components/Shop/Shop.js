@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import fakeData from '../../fakeData'
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
-import './Shop.css'
+import './Shop.css';
 
 const Shop = () => {
     // console.log(fakeData);
@@ -40,9 +41,7 @@ const Shop = () => {
             product.quantity = 1;
             newCart = [...cart, product];
         }
-
         setCart(newCart);
-
         addToDatabaseCart(product.key, count);
     };
 
@@ -59,11 +58,11 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                {/* <h3>This is Cart</h3>
-                <h5>Order Summery: {cart.length}</h5>
-                 */}
-
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <Link to='/review'>
+                        <button className="add-button">Review Order</button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );
