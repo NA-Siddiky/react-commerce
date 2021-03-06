@@ -39,7 +39,6 @@ const Review = () => {
     let thankYou;
     if (orderPlaced) {
         thankYou = <img src={confirmationImage} />
-
     }
     return (
         <div className="shop-container">
