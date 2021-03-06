@@ -20,7 +20,7 @@ const Cart = (props) => {
         shipping = 4.99;
     }
     else if (total > 0) {
-        shipping = 9.99
+        shipping = 9.99;
     }
 
     const tax = Math.round(total / 10);
@@ -39,7 +39,7 @@ const Cart = (props) => {
             <p><small> TAX: {tax}</small></p>
             <p>Total Price: {total + shipping}</p>
             <br />
-            <Link to ='/review'>
+            <Link to='/review'>
                 <button className="add-button">Review Order</button>
             </Link>
         </div>
