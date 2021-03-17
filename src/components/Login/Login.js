@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
-import { initializeLoginFramework, handleGoogleSignIn, handleFBSignIn, handleSignOut } from './loginManager'
+import { initializeLoginFramework, handleGoogleSignIn, handleFBSignIn, handleSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from './loginManager'
 
 function Login() {
     const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
         isSignedIn: false,
-        // newUser: false,
+        newUser: false,
         name: '',
         email: '',
         password: '',
         photoURL: '',
         error: '',
-        // success: false,
+        success: false,
     });
 
     initializeLoginFramework();
@@ -49,7 +49,6 @@ function Login() {
             })
     }
 
-
     const handleBlur = (e) => {
         // debugger;
         // console.log(e.target.name, e.target.value);
@@ -73,11 +72,21 @@ function Login() {
     const handleSubmit = (e) => {
         // console.log(user.email, user.password);
         if (newUser && user.email && user.password) {
-
+            createUserWithEmailAndPassword(user.name, user.email, user.password)
+                .then(response => {
+                    setUser(response);
+                    setLoggedInUser(response);
+                    history.replace(from);
+                })
         }
 
         if (!newUser && user.email && user.password) {
-
+            signInWithEmailAndPassword(user.email, user.password)
+                .then(response => {
+                    setUser(response);
+                    setLoggedInUser(response);
+                    history.replace(from);
+                })
         }
         e.preventDefault();
     };
