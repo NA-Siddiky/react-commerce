@@ -26,27 +26,33 @@ function Login() {
     const googleSignIn = () => {
         handleGoogleSignIn()
             .then(response => {
-                setUser(response);
-                setLoggedInUser(response);
-                history.replace(from);
+                handleResponse(response, true);
             })
     }
 
     const fbSignIn = () => {
         handleFBSignIn()
             .then(response => {
-                setUser(response);
-                setLoggedInUser(response);
-                history.replace(from);
+                handleResponse(response, true);
             })
     }
 
     const signOut = () => {
         handleSignOut()
             .then(response => {
-                setUser(response);
-                setLoggedInUser(response);
+                // setUser(response);
+                // setLoggedInUser(response);
+                // history.replace(from);
+                handleResponse(response, false);
             })
+    }
+
+    const handleResponse = (response, redirect) => {
+        setUser(response);
+        setLoggedInUser(response);
+        if (redirect) {
+            history.replace(from);
+        }
     }
 
     const handleBlur = (e) => {
@@ -74,18 +80,14 @@ function Login() {
         if (newUser && user.email && user.password) {
             createUserWithEmailAndPassword(user.name, user.email, user.password)
                 .then(response => {
-                    setUser(response);
-                    setLoggedInUser(response);
-                    history.replace(from);
+                    handleResponse(response, true);
                 })
         }
 
         if (!newUser && user.email && user.password) {
             signInWithEmailAndPassword(user.email, user.password)
                 .then(response => {
-                    setUser(response);
-                    setLoggedInUser(response);
-                    history.replace(from);
+                    handleResponse(response, true);
                 })
         }
         e.preventDefault();
