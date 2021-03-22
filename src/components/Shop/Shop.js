@@ -48,6 +48,9 @@ const Shop = () => {
     return (
         <div className="shop-container">
             <div className="product-container">
+            {
+                product.length === 0 && <p>loading...</p>
+            }
                 {
                     product.map(PD => <Product
                         key={PD.key}
